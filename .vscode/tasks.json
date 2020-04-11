@@ -5,14 +5,19 @@
             "label": "gcc build active file",
             "command": "/usr/bin/gcc",
             "args": [
-                "-g",
+                "-g3",
+                "-O0",
+                "-lm",
                 "${file}",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
+                "${fileDirname}/${fileBasenameNoExtension}.out"
             ],
             "options": {
                 "cwd": "/usr/bin"
-            }
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
         }
     ],
     "version": "2.0.0"
