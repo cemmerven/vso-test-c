@@ -1,9 +1,9 @@
 
 
-#include <stdlib.h>
-#include <stdio.h>
+//#include <stdlib.h>
+//#include <stdio.h>
+//#include <math.h>
 #include <stdbool.h>
-#include <math.h>
 
 //------------------------------------------------------------------------------
 
@@ -220,6 +220,7 @@ _Bool SayiCiftMi( int sayi ) {
 }//SayiCiftMi
 
 //------------------------------------------------------------------------------
+
 void deney10( void ) {
 
 	int x[] = { 3, 5, 7, 0, -1, 1, 3 };
@@ -488,8 +489,9 @@ void deney0() {
 //------------------------------------------------------------------------------
 /*
   Requires:
-    * math header file for "sqrtf" function declaration
     * stdio header file for "printf" function declaration
+    * math header file for "sqrtf" function declaration
+    * linking math library (gcc -lm)
 */
 void PrintSquareRoot( float decimalNumber ) {
 
@@ -502,11 +504,6 @@ void PrintSquareRoot( float decimalNumber ) {
 
 //------------------------------------------------------------------------------
 
-void CommandLineArguments( int argc, char* argv[] ) {
-
-}//CommandLineArguments
-
-//------------------------------------------------------------------------------
 /*
   Requires:
     * stdlib header file for "rand" & "srand" function declarations
@@ -514,7 +511,18 @@ void CommandLineArguments( int argc, char* argv[] ) {
 
 void Random( void ) {
 
+   //int value_1 = rand();
+   //int value_2 = rand();
+
 }//Random
+
+//------------------------------------------------------------------------------
+
+void CommandLineArguments( int argc, char* argv[] ) {
+
+  // TODO : print all command line arguments to the Console/Terminal/Command-Line
+
+}//CommandLineArguments
 
 //------------------------------------------------------------------------------
 
@@ -524,12 +532,9 @@ int g_b = 1;
 int main( int argc, char* argv[] ) {
 
   
-  PrintSquareRoot( 0 );
-   
-   
-
-   int value_1 = rand();
-   int value_2 = rand();
+   PrintSquareRoot( 0 );
+   Random(); 
+   CommandLineArguments( argc, argv );
 
    deney14();
    deney13();
