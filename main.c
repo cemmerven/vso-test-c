@@ -379,6 +379,7 @@ void deney14( void ) {
    int elementCount = sizeof( array ) / sizeof( int); 
    int set[ elementCount ];
    int j = 0;
+   int setSize = 0;
 
    for ( int i = 0; i < elementCount ; ++i ) {
  
@@ -390,7 +391,9 @@ void deney14( void ) {
 
    }
 
-}
+   setSize = j + 1;
+
+}//deney14
 
 //-----------------------------------------------------------------------------
 
