@@ -1,4 +1,6 @@
 
+
+#include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
 #include <math.h>
@@ -484,15 +486,35 @@ void deney0() {
 }//keyfi
 
 //------------------------------------------------------------------------------
+/*
+  Requires:
+    * math header file for "sqrtf" function declaration
+    * stdio header file for "printf" function declaration
+*/
+void PrintSquareRoot( float decimalNumber ) {
 
-void Console( int argc, char* argv[] ) {
+   //float root = sqrtf( decimalNumber );
 
-   float value = 8;
-   float root = sqrtf( value );
+   // TODO : don't forget the CRLF chars at the end of the string.
+   //printf( "square root of %f is %f", decimalNumber, root );
 
-   printf( "square root of %f is %f\r\n", value, root );
+}//PrintSquareRoot
 
-}//Console
+//------------------------------------------------------------------------------
+
+void CommandLineArguments( int argc, char* argv[] ) {
+
+}//CommandLineArguments
+
+//------------------------------------------------------------------------------
+/*
+  Requires:
+    * stdlib header file for "rand" & "srand" function declarations
+*/
+
+void Random( void ) {
+
+}//Random
 
 //------------------------------------------------------------------------------
 
@@ -501,8 +523,14 @@ int g_b = 1;
 
 int main( int argc, char* argv[] ) {
 
-   Console( argc, argv );
+  
+  PrintSquareRoot( 0 );
    
+   
+
+   int value_1 = rand();
+   int value_2 = rand();
+
    deney14();
    deney13();
    deney12();
