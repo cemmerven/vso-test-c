@@ -340,6 +340,60 @@ void deney12( void ) {
 
 //-----------------------------------------------------------------------------
 
+void deney13( void ) {  
+
+   int x = 0;
+   int y = 1;
+   int max = 0;
+     
+   if ( x < y ) {
+      max = y;
+   } else { 
+      max = x;
+   }
+
+   max = x < y ? y : x; 
+
+}
+
+//-----------------------------------------------------------------------------
+
+_Bool sayi_varmi( int sayilar[], int elemanSayisi, int aranan_sayi ) {
+
+   for ( int i = 0; i < elemanSayisi; ++i ) {
+
+      if ( sayilar[ i ] == aranan_sayi )
+     	return true;
+
+   }
+
+   return false;
+
+}//sayi_varmi
+
+//------------------------------------------------------------------------------
+
+void deney14( void ) {
+
+   int array[] = { 1, 2, 3, 4, 5, 1, 2, 3, 4, 5 };
+   int elementCount = sizeof( array ) / sizeof( int); 
+   int set[ elementCount ];
+   int j = 0;
+
+   for ( int i = 0; i < elementCount ; ++i ) {
+ 
+      if ( ! sayi_varmi( set, j, array[ i ] ) ) {
+
+         set[ j++ ] = array[ i ];
+
+      }
+
+   }
+
+}
+
+//-----------------------------------------------------------------------------
+
 _Bool SayiTekMi( int sayi ) {
 
    _Bool result = false;
@@ -389,20 +443,6 @@ int Max( int array[], int elementCount ) {
 
 //------------------------------------------------------------------------------
 
-_Bool sayi_varmi( int sayilar[], int elemanSayisi, int aranan_sayi ) {
-
-   for ( int i = 0; i < elemanSayisi; ++i ) {
-
-      if ( sayilar[ i ] == aranan_sayi )
-     	return true;
-
-   }
-
-   return false;
-
-}//sayi_varmi
-
-//------------------------------------------------------------------------------
 
 void sizeof_operatoru() {
 
@@ -459,7 +499,9 @@ int g_b = 1;
 int main( int argc, char* argv[] ) {
 
    Console( argc, argv );
-
+   
+   deney14();
+   deney13();
    deney12();
    deney11();
    deney10();
