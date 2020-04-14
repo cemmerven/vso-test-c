@@ -7,12 +7,15 @@
 
 //------------------------------------------------------------------------------
 
-int Adsiz( int x, int y ) {
+void deney0( void ) {
 
-  int a = 0;
-  return x + y + 3;
+   int a;
+   int *address;
 
-}//Adsiz
+   a = 1;
+   address = &a;
+
+}//deney0
 
 //------------------------------------------------------------------------------
 
@@ -121,7 +124,6 @@ void deney5( void ) {
 //------------------------------------------------------------------------------
 
 void enBasitFonksiyon( void ) {
-
 }
 
 //------------------------------------------------------------------------------
@@ -263,7 +265,24 @@ int Min( int array[], int elementCount ) {
 
 //------------------------------------------------------------------------------
 
-int MinIndex(int array[], int elementCount) {
+int Min2( int array[], int elementCount ) {
+
+   int min = array[ 0 ];
+
+   for ( int i = 0; i < elementCount; i++ ) {
+
+	   if ( min > array[ i ] )
+		   min = array[ i ];
+
+   }
+
+  return min;
+
+}//Min2
+
+//------------------------------------------------------------------------------
+
+int MinIndex( int array[], int elementCount ) {
 
    int min = array[0];
    int i = 0;
@@ -297,7 +316,7 @@ void sirala( int array[], int elementCount ) {
 
    }//for
 
-}
+}//sirala
 
 //------------------------------------------------------------------------------
 
@@ -366,13 +385,54 @@ _Bool sayi_varmi( int sayilar[], int elemanSayisi, int aranan_sayi ) {
    for ( int i = 0; i < elemanSayisi; ++i ) {
 
       if ( sayilar[ i ] == aranan_sayi )
-     	return true;
+     	   return true;
 
    }
 
    return false;
 
 }//sayi_varmi
+
+//------------------------------------------------------------------------------
+
+int sayinin_son_yeri( int sayilar[], int elemanSayisi, int aranan_sayi ) {
+
+   int yeri = -1;
+
+   for ( int i = 0; i < elemanSayisi; ++i ) {
+
+      if ( sayilar[ i ] == aranan_sayi ) {
+         yeri = i;
+      }   
+
+   }//for
+
+  // "yeri" değişkeninde -1 varsa (-1 dizi için geçersiz bir index değeridir) sayıyı
+  // bulamadık demektir. 0 ve daha büyük bir değer varsa aranan sayının dizideki yeridir.
+  return yeri;
+
+}//sayinin_son_yeri
+
+//------------------------------------------------------------------------------
+
+int sayinin_ilk_yeri( int sayilar[], int elemanSayisi, int aranan_sayi ) {
+
+  int yeri = -1;
+
+   for ( int i = 0; i < elemanSayisi; ++i ) {
+
+      if ( sayilar[ i ] == aranan_sayi ) {
+         yeri = i;
+         break;
+      }   
+
+   }//for
+
+  // "yeri" değişkeninde -1 varsa (-1 dizi için geçersiz bir index değeridir) sayıyı
+  // bulamadık demektir. 0 ve daha büyük bir değer varsa aranan sayının dizideki yeridir.
+  return yeri;
+
+}//sayinin_ilk_yeri
 
 //------------------------------------------------------------------------------
 
@@ -412,23 +472,6 @@ _Bool SayiTekMi( int sayi ) {
 
 //------------------------------------------------------------------------------
 
-int Min2( int array[], int elementCount ) {
-
-   int min = array[ 0 ];
-
-   for ( int i = 0; i < elementCount ; i++ ) {
-
-	   if ( min > array[ i ] )
-		   min = array[ i ];
-
-   }
-
-  return min;
-
-}//Min2
-
-//------------------------------------------------------------------------------
-
 int Max( int array[], int elementCount ) {
 
    int max = array[ 0 ];
@@ -449,7 +492,6 @@ int Max( int array[], int elementCount ) {
 
 //------------------------------------------------------------------------------
 
-
 void sizeof_operatoru() {
 
   int sayilar[] = { 3, 5, 7, 0, -1, 1, 2, 4, 5, 6 };
@@ -464,29 +506,6 @@ void sizeof_operatoru() {
 
 //------------------------------------------------------------------------------
 
-void deney0() {
-
-  int sayilar[] = { 3, 5, 7, 0, -1, 1, 2, 4, 5, 6 };
-
-  int elemanSayisi = sizeof( sayilar ) / sizeof( int );
-
-  int aranacak_sayi = 7;
-  int yeri = -1;
-
-
-  for ( int i = 0; i < elemanSayisi; ++i ) {
-
-     if ( sayilar[ i ] == aranacak_sayi )
-        yeri = i;
-
-  }
-
-  // "yeri" değişkeninde -1 varsa sayıyı bulamadık demektir.
-  // 0 ve daha büyük bir değer varsa aranan sayının dizideki yeridir
-
-}//keyfi
-
-//------------------------------------------------------------------------------
 /*
   Requires:
     * stdio header file for "printf" function declaration
@@ -526,12 +545,12 @@ void CommandLineArguments( int argc, char* argv[] ) {
 
 //------------------------------------------------------------------------------
 
+// global varaibles 
 int g_a;
 int g_b = 1;
 
 int main( int argc, char* argv[] ) {
-
-  
+ 
    PrintSquareRoot( 0 );
    Random(); 
    CommandLineArguments( argc, argv );
