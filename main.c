@@ -1,7 +1,7 @@
 
 
-//#include <stdlib.h>
-//#include <stdio.h>
+#include <stdlib.h>
+#include <stdio.h>
 //#include <math.h>
 #include <stdbool.h>
 
@@ -460,6 +460,35 @@ void deney14( void ) {
 
 //-----------------------------------------------------------------------------
 
+int random( int lower, int upper )  {
+
+   int raw = rand();
+   int result = raw % ( upper - lower + 1 ) + lower;
+
+   return result;
+   
+}//random
+
+//-----------------------------------------------------------------------------
+
+void deney15(  void ) {
+
+  int number = -1;
+
+  for ( int i = 0; i < 101; i++ ) {
+
+     number = random( 10, 20 );
+ 
+     printf( "%d\r\n", number );
+  
+
+  }
+  
+
+}//deney15
+
+//-----------------------------------------------------------------------------
+
 _Bool SayiTekMi( int sayi ) {
 
    _Bool result = false;
@@ -555,6 +584,7 @@ int main( int argc, char* argv[] ) {
    Random(); 
    CommandLineArguments( argc, argv );
 
+   deney15(); 
    deney14();
    deney13();
    deney12();
