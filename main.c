@@ -475,16 +475,13 @@ void deney15(  void ) {
 
   int number = -1;
 
-  for ( int i = 0; i < 101; i++ ) {
+  for ( int i = 0; i < 100; i++ ) {
 
      number = random( 10, 20 );
- 
      printf( "%d\r\n", number );
-  
-
+ 
   }
-  
-
+ 
 }//deney15
 
 //-----------------------------------------------------------------------------
