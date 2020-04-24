@@ -486,6 +486,54 @@ void deney15(  void ) {
 
 //-----------------------------------------------------------------------------
 
+void deney16( void ) { 
+
+   int array[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+   int i = 0;
+   int j = 0;
+   int elementCount = sizeof( array ) / sizeof( int );
+   int swap = 0;
+
+   for ( int k = 0; k < elementCount; k++ ) {
+
+      i = random( 0, elementCount - 1 );
+      j = random( 0, elementCount - 1 );
+
+      swap = array[ i ];
+      array[ i ] = array[ j ];
+      array[ j ] = swap;
+
+   }//for
+
+}
+
+//-----------------------------------------------------------------------------
+
+void deney17( void ) { 
+
+   int array[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+   void *address = 0;
+
+   address = malloc( sizeof( array ) );
+   if (  address == 0 ) {
+      return;
+   }   
+
+   int *newArray = (int*) address;
+
+   int elementCount = sizeof( array ) / sizeof( int );
+   for ( int i = 0; i < elementCount; i++ ) {
+   
+      newArray[ i ] = array[ i ];
+
+   }//for
+   
+   //free( address );
+
+}//deney17
+
+//-----------------------------------------------------------------------------
+
 _Bool SayiTekMi( int sayi ) {
 
    _Bool result = false;
@@ -581,6 +629,8 @@ int main( int argc, char* argv[] ) {
    Random(); 
    CommandLineArguments( argc, argv );
 
+   deney17();
+   deney16();
    deney15(); 
    deney14();
    deney13();
