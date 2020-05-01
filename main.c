@@ -338,9 +338,9 @@ void bubbleSort( int array[], int elementCount ) {
 
 		   if ( array[ i - 1 ] > array[ i ] ) {
 
-			  int a = array[ i - 1 ];
-			  array[ i - 1 ] = array[ i ];
-			  array[ i ] = a;
+			   int a = array[ i - 1 ];
+			   array[ i - 1 ] = array[ i ];
+			   array[ i ] = a;
 
 		   }
 
@@ -460,14 +460,14 @@ void deney14( void ) {
 
 //-----------------------------------------------------------------------------
 
-int random( int lower, int upper )  {
+int randomRange( int lower, int upper )  {
 
    int raw = rand();
    int result = raw % ( upper - lower + 1 ) + lower;
 
    return result;
    
-}//random
+}//randomRange
 
 //-----------------------------------------------------------------------------
 
@@ -477,7 +477,7 @@ void deney15(  void ) {
 
   for ( int i = 0; i < 100; i++ ) {
 
-     number = random( 10, 20 );
+     number = randomRange( 10, 20 );
      printf( "%d\r\n", number );
  
   }
@@ -496,8 +496,8 @@ void deney16( void ) {
 
    for ( int k = 0; k < elementCount; k++ ) {
 
-      i = random( 0, elementCount - 1 );
-      j = random( 0, elementCount - 1 );
+      i = randomRange( 0, elementCount - 1 );
+      j = randomRange( 0, elementCount - 1 );
 
       swap = array[ i ];
       array[ i ] = array[ j ];
@@ -505,7 +505,7 @@ void deney16( void ) {
 
    }//for
 
-}
+}//deney16
 
 //-----------------------------------------------------------------------------
 
@@ -531,6 +531,107 @@ void deney17( void ) {
    //free( address );
 
 }//deney17
+
+//-----------------------------------------------------------------------------
+
+int* shuffle( int array[], int elementCount ) {
+
+   int *newArray = malloc( elementCount * sizeof( int ) ); 
+   if ( newArray == NULL ) {
+      return NULL;
+   }
+
+   for ( int i = 0; i < elementCount; i++ ) {
+   
+      newArray[ i ] = array[ i ];
+
+   }//for
+
+   int i = 0;
+   int j = 0;
+   int swap = 0;
+
+   int lastIndex = elementCount - 1;
+   for ( int k = 0; k < elementCount; k++ ) {
+
+      i = randomRange( 0, lastIndex );
+      j = randomRange( 0, lastIndex );
+
+      swap = newArray[ i ];
+      newArray[ i ] = newArray[ j ];
+      newArray[ j ] = swap;
+
+   }//for
+
+   return newArray;
+
+}//shuffle
+
+//-----------------------------------------------------------------------------
+
+void deney18( void ) {
+   
+   int array[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+   int elementCount = sizeof( array ) / sizeof( int );
+   int *shuffledArray = shuffle( array, elementCount );
+
+}//deney18
+
+//-----------------------------------------------------------------------------
+
+_Bool asalMi( int x ) {
+
+   for( int i = 2; i < x ; i++ ) {
+
+     if (  x % i == 0 ) {
+
+        return false;
+
+     }
+
+   }//for
+
+   return true;
+
+}//asalMi
+
+//-----------------------------------------------------------------------------
+
+_Bool asalMi2( int x ) {
+
+   int y = x / 2 + 1;
+
+   for( int i = 2; i < y; i++ ) {
+
+     if (  x % i == 0 ) {
+
+        return false;
+
+     }
+
+   }//for
+
+   return true;
+
+}//asalMi2
+
+//-----------------------------------------------------------------------------
+
+void deney19( void ) {
+
+   int primes[] = { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, };
+   int elementCount = sizeof( primes ) / sizeof( int );   
+
+   for ( int i = 0; i < elementCount; i++ ) {
+
+         _Bool r0 = asalMi2( primes[ i ] );
+         _Bool r1 = asalMi2( primes[ i ] *2 );
+   }
+
+   _Bool resultA = asalMi( 6 );
+   _Bool resultB = asalMi( 7 );
+
+}//deney19
 
 //-----------------------------------------------------------------------------
 
@@ -629,6 +730,8 @@ int main( int argc, char* argv[] ) {
    Random(); 
    CommandLineArguments( argc, argv );
 
+   deney19();
+   deney18();
    deney17();
    deney16();
    deney15(); 
