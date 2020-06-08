@@ -635,6 +635,20 @@ void deney19( void ) {
 
 //-----------------------------------------------------------------------------
 
+void deney20( void ) {
+
+   char x[ 4 ] = { 65, 66 , 'C', '\0' }; 
+   char y[ 4 ] = { 'A', 'B','C', '\0' }; 
+   char* z     = "ABC";
+
+   x[ 0 ] = 65;
+
+   //printf( "%d %d", x[0], x[1] ); 
+
+}//deney20
+
+//-----------------------------------------------------------------------------
+
 _Bool SayiTekMi( int sayi ) {
 
    _Bool result = false;
@@ -730,6 +744,7 @@ int main( int argc, char* argv[] ) {
    Random(); 
    CommandLineArguments( argc, argv );
 
+   deney20();
    deney19();
    deney18();
    deney17();
