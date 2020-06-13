@@ -640,12 +640,43 @@ void deney20( void ) {
    char x[ 4 ] = { 65, 66 , 'C', '\0' }; 
    char y[ 4 ] = { 'A', 'B','C', '\0' }; 
    char* z     = "ABC";
-
-   x[ 0 ] = 65;
+   char text[] = "ABC";
+        
+   x[ 0 ] = 'A';
+   x[ 2 ] = 66;
+   x[ 3 ] = 'A' + 2;
 
    //printf( "%d %d", x[0], x[1] ); 
 
 }//deney20
+
+//-----------------------------------------------------------------------------
+
+void deney21( void ) {
+
+   char text[] = "qrs";
+   size_t textLength = sizeof( text );
+   char diff = 'a' - 'A';
+
+   for ( size_t i = 0; textLength - 1; i++ ) {
+
+      text[ i ] -= diff;
+   
+   }
+
+   for ( size_t i = 0; text[ i ]; i++ ) {
+
+      text[ i ] += diff;
+   
+   }
+
+   for ( size_t i = 0; text[ i ] != 0; i++ ) {
+
+      text[ i ] -= diff;
+   
+   }
+
+}//deney21
 
 //-----------------------------------------------------------------------------
 
@@ -744,6 +775,7 @@ int main( int argc, char* argv[] ) {
    Random(); 
    CommandLineArguments( argc, argv );
 
+   deney21();
    deney20();
    deney19();
    deney18();
