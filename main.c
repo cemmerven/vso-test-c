@@ -664,15 +664,15 @@ void deney21( void ) {
    
    }
 
-   for ( size_t i = 0; text[ i ]; i++ ) {
-
-      text[ i ] += diff;
-   
-   }
-
    for ( size_t i = 0; text[ i ] != 0; i++ ) {
 
       text[ i ] -= diff;
+   
+   }
+
+   for ( size_t i = 0; text[ i ]; i++ ) {
+
+      text[ i ] += diff;
    
    }
 
