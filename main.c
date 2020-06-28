@@ -2,7 +2,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-//#include <math.h>
+#include <math.h>
 #include <stdbool.h>
 
 //------------------------------------------------------------------------------
@@ -666,17 +666,63 @@ void deney21( void ) {
 
    for ( size_t i = 0; text[ i ] != 0; i++ ) {
 
-      text[ i ] -= diff;
+      text[ i ] += diff;
    
    }
 
    for ( size_t i = 0; text[ i ]; i++ ) {
 
-      text[ i ] += diff;
+      text[ i ] -= diff;
    
    }
 
 }//deney21
+
+//-----------------------------------------------------------------------------
+
+_Bool IsLower( char c ) {
+
+   return ( c <= 'z' && c >= 'a' );
+     
+}
+
+//-----------------------------------------------------------------------------
+
+void deney22( void ) {
+
+   char title[] = "mavi trenin gizemi";
+   char fark = 'a' - 'A';
+   // TODO : büyük harf ise dokunulmayacak
+   // ilk elemanı küçük harfse büyük harfe çevirir
+   if ( IsLower( title[ 0 ] ) ) {
+      title[ 0 ] -= fark;
+   } 
+
+   size_t count = sizeof( title );
+
+   for ( size_t i = 1; i < count - 1; i++ ) {
+
+      if ( IsLower( title[ i ] ) ) {
+
+         if ( title[ i - 1 ] == ' ' ) {
+            title[ i ] -= fark;
+         }
+      }
+
+   }
+
+}//deney22
+
+//-----------------------------------------------------------------------------
+
+void deney23( void ) {
+
+   for ( int ab = 0; ab < 256; ab++ ) {
+      printf ( " %d %c \r\n", ab, ab );
+
+   }
+
+}
 
 //-----------------------------------------------------------------------------
 
@@ -689,6 +735,32 @@ _Bool SayiTekMi( int sayi ) {
    return result;
 
 }//SayiTekMi
+
+//-----------------------------------------------------------------------------
+
+_Bool BitDegeri( int a , int b ) {
+
+   a >>= b;
+
+   return  SayiTekMi( a ); 
+
+}
+
+//-----------------------------------------------------------------------------
+
+void deney24( void ) { 
+
+   int birsayi = 6;
+
+   for  ( int i = 32; i > -1 ; i-- ){
+
+       _Bool bit = BitDegeri( birsayi , i );
+
+      printf( " %d " , bit );
+
+   }   
+
+}
 
 //------------------------------------------------------------------------------
 
@@ -707,8 +779,9 @@ int Max( int array[], int elementCount ) {
    }//while
 
    return max;
-
+   
 }//Max
+
 
 //------------------------------------------------------------------------------
 
@@ -775,6 +848,29 @@ int main( int argc, char* argv[] ) {
    Random(); 
    CommandLineArguments( argc, argv );
 
+   //////
+   int a = 0;
+   int b = 0;
+   int c = sqrt( 12 );
+
+   float f0A = __FLT_EPSILON__;
+   double d0A = __DBL_EPSILON__;
+   
+   for (size_t i = 0; i < 100; i++)
+   {
+      d0A += __DBL_EPSILON__;
+   }
+   
+   float f0B = 0.1; 
+   f0B = f0B * 10; 
+
+   double f1 = 2 * sqrt( 3 );
+   double f2 = sqrt( 12 );
+   //////
+
+   deney24();
+   deney23();
+   deney22();
    deney21();
    deney20();
    deney19();
