@@ -5,6 +5,8 @@
 #include <math.h>
 #include <stdbool.h>
 
+#include <windows.h>
+
 //------------------------------------------------------------------------------
 
 void deney0( void ) {
@@ -752,7 +754,7 @@ void deney24( void ) {
 
    int birsayi = 6;
 
-   for  ( int i = 32; i > -1 ; i-- ){
+   for  ( int i = 32; i > -1 ; i-- ) {
 
        _Bool bit = BitDegeri( birsayi , i );
 
@@ -761,6 +763,61 @@ void deney24( void ) {
    }   
 
 }
+
+//-----------------------------------------------------------------------------
+
+void printbits( int birsayi ) { 
+
+   for  ( int i = 7; i > -1 ; i-- ) {
+
+      _Bool bit = BitDegeri( birsayi , i );
+
+      char c = bit ? ' ' : 'M'; 
+
+      //printf( "\033[0;31m" );
+      //printf("");
+      printf( "\x1b[32m%c " , c );
+
+   }   
+
+}
+
+//------------------------------------------------------------------------------
+
+void deney25( void ) {
+
+   for ( int i = 1; i < 256; i += 2 ) {
+
+      printbits( i );
+      printf( "\r\n" );
+
+   } 
+
+}
+
+//------------------------------------------------------------------------------
+
+void deney26() {
+
+   int a = 0;
+   int b = 0;
+   int c = sqrt( 12 );
+
+   float f0A  = __FLT_EPSILON__;
+   double d0A = __DBL_EPSILON__;
+   
+   for (size_t i = 0; i < 100; i++)
+   {
+      d0A += __DBL_EPSILON__;
+   }
+   
+   float f0B = 0.1; 
+   f0B = f0B * 10; 
+
+   double f1 = 2 * sqrt( 3 );
+   double f2 = sqrt( 12 );
+
+}//deney26
 
 //------------------------------------------------------------------------------
 
@@ -838,35 +895,72 @@ void CommandLineArguments( int argc, char* argv[] ) {
 
 //------------------------------------------------------------------------------
 
+void printLastError()
+{
+    //Get the error message, if any.
+    DWORD errorMessageID = GetLastError();
+    if(errorMessageID == 0)
+        return; //No error message has been recorded
+
+    LPSTR messageBuffer = NULL;
+    size_t size = FormatMessageA(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
+                                 NULL, errorMessageID, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), (LPSTR)&messageBuffer, 0, NULL);
+   
+    printf( "%s", messageBuffer );
+    //Free the buffer.
+    LocalFree(messageBuffer);
+
+}//printLastError
+
+//------------------------------------------------------------------------------
+
 // global varaibles 
 int g_a;
 int g_b = 1;
 
-int main( int argc, char* argv[] ) {
+
+static HANDLE stdoutHandle;
+static DWORD outModeInit;
+#ifndef ENABLE_VIRTUAL_TERMINAL_PROCESSING
+#define ENABLE_VIRTUAL_TERMINAL_PROCESSING  0x0004
+#endif
+
+void setupConsole(void) {
+ 	DWORD outMode = 0;
+ 	stdoutHandle = GetStdHandle(STD_OUTPUT_HANDLE);
  
+ 	if(stdoutHandle == INVALID_HANDLE_VALUE) {
+      printLastError(); 
+ 		exit(EXIT_FAILURE);
+ 	}
+ 	
+ 	if(!GetConsoleMode(stdoutHandle, &outMode)) {
+ 		exit(EXIT_FAILURE);
+ 	}
+ 
+ 	outModeInit = outMode;
+ 	
+     // Enable ANSI escape codes
+ 	outMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+ 
+ 	if(!SetConsoleMode(stdoutHandle, outMode)) {
+      printLastError(); 
+ 		exit(EXIT_FAILURE);
+ 	}	
+}
+
+int main( int argc, char* argv[] ) {
+
+   setupConsole();
+
    PrintSquareRoot( 0 );
    Random(); 
    CommandLineArguments( argc, argv );
 
-   //////
-   int a = 0;
-   int b = 0;
-   int c = sqrt( 12 );
 
-   float f0A = __FLT_EPSILON__;
-   double d0A = __DBL_EPSILON__;
-   
-   for (size_t i = 0; i < 100; i++)
-   {
-      d0A += __DBL_EPSILON__;
-   }
-   
-   float f0B = 0.1; 
-   f0B = f0B * 10; 
 
-   double f1 = 2 * sqrt( 3 );
-   double f2 = sqrt( 12 );
-   //////
+   deney25();
+   return EXIT_SUCCESS;
 
    deney24();
    deney23();
